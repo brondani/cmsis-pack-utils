@@ -12,7 +12,7 @@ void thread_func(void *argument) {
 }
 
 int main(void) {
-	EventRecorderInitialize (EventRecordAll, 1);    // initialize and start Event Recorder
+  EventRecorderInitialize (EventRecordAll, 1);      // initialize and start Event Recorder
   osThreadNew(thread_func, NULL, NULL);
   if (osKernelReady == osKernelGetState()) {
     osKernelStart();
