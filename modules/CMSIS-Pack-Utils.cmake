@@ -94,7 +94,7 @@ function(add_cmsis_library target device compiler packs components)
       RESULT_VARIABLE RESULT
     )
     if(NOT ${RESULT} EQUAL 0)
-      message(FATAL_ERROR "cpackget add pack ${PACK} failed")
+      message(FATAL_ERROR "cpackget adding missing packs failed")
     endif()
     file(REMOVE ${PACKS_FILENAME})
   endif()
