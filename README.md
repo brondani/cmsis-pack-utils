@@ -1,6 +1,6 @@
 # CMSIS-Pack-Utils: CMake module PoC
 
-The CMake module [`CMSIS-Pack-Utils.cmake`](./modules/CMSIS-Pack-Utils.cmake) introduced here is an experimental proof of concept for yet another approach aimed at closing the gap between generic CMake based projects and CMSIS-Packs. It generates `csolution.yml` and `cproject.yml` and orchestrates calls to `csolution` and `cpackget` to download required packs and generate build instructions. It parses the generated `cbuild.yml` for getting source files, include paths and defines and generate CMake library targets. Several limitations such as pre-includes and generators handling are currently not addressed in this PoC.
+The CMake module [`CMSIS-Pack-Utils.cmake`](./modules/CMSIS-Pack-Utils.cmake) is an experimental proof of concept for yet another approach aimed at closing the gap between generic CMake based projects and CMSIS-Packs. It generates `csolution.yml` and `cproject.yml` and orchestrates calls to `csolution` and `cpackget` to download required packs and generate build instructions. It parses the generated `cbuild.yml` for getting source files, include paths and defines and then it generates CMake library targets. Several limitations such as device attributes, pre-includes and generators handling are currently not addressed in this PoC.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ add_cmsis_library(
 ```
 - `target`: cmsis target library name, freely chosen
 - `device`: device identifier according to the `csolution` [device name convention](https://github.com/Open-CMSIS-Pack/devtools/blob/main/tools/projmgr/docs/Manual/YML-Input-Format.md#device-name-conventions)
-- `compiler`: one of the supported compilers supported by `csolution` [`AC5`, `AC6`, `GCC`, `IAR`]
+- `compiler`: one of the supported compilers supported by `csolution` [`AC6`, `GCC`, `IAR`]
 - `packs`: list of required pack identifiers according to the `csolution` [pack name convention](https://github.com/Open-CMSIS-Pack/devtools/blob/main/tools/projmgr/docs/Manual/YML-Input-Format.md#pack-name-conventions).
 - `components`: list of required component identifiers according to the `csolution` [component name convention](https://github.com/Open-CMSIS-Pack/devtools/blob/main/tools/projmgr/docs/Manual/YML-Input-Format.md#component-name-conventions).
 
@@ -47,7 +47,7 @@ The location of configuration files and related [`PLM`](https://github.com/Open-
 
 ## Example
 
-The [HelloWorld](./examples/HelloWorld) example uses the `open-iot-sdk` toolchain setup as other `open-iot-sdk` [examples](https://gitlab.arm.com/iot/open-iot-sdk/examples). Make sure their prequisites are satisfied before running this example.
+The [HelloWorld](./examples/HelloWorld) example uses the `open-iot-sdk` toolchain setup as it's done in other [open-iot-sdk examples](https://gitlab.arm.com/iot/open-iot-sdk/examples). Make sure `CMake`, `ninja` and `ARMClang` are available on the PATH before running this example.
 
 Configure:
 ```
