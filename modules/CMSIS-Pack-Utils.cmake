@@ -140,7 +140,7 @@ function(add_cmsis_library target device compiler packs components)
 endfunction()
 
 function(cmsis_get_defines cbuild defines)
-  string(JSON DEFINES ERROR_VARIABLE ERROR GET ${CBUILD_CONTENT} "build" "define")
+  string(JSON DEFINES ERROR_VARIABLE ERROR GET ${cbuild} "build" "define")
   if(ERROR STREQUAL "NOTFOUND")
     set(INDEX 0)
     while(ERROR STREQUAL "NOTFOUND")
