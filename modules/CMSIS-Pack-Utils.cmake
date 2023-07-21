@@ -48,7 +48,7 @@ function(add_cmsis_library target device compiler packs components)
   endif()
 
   # generate csolution.yml and cproject.yml files
-  set(CSOLUTION_CONTENT "{\"solution\": {\"projects\": [{\"project\": \"${target}.cproject.yml\"}], \"output-dirs\": {\"rtedir\": \"${RTE_DIR}\"}, \"packs\": []}}")
+  set(CSOLUTION_CONTENT "{\"solution\": {\"projects\": [{\"project\": \"${target}.cproject.yml\"}], \"target-types\": [{\"type\": \"${device}\", \"device\": \"${device}\"}], \"packs\": []}}")
   list(LENGTH ${packs} PACKS_LENGTH)
   if(PACKS_LENGTH GREATER 0)
     math(EXPR PACKS_LENGTH "${PACKS_LENGTH}-1")
@@ -62,7 +62,7 @@ function(add_cmsis_library target device compiler packs components)
   set(CSOLUTION_FILENAME ${CSOLUTION_DIR}/${target}.csolution.yml)
   file(WRITE ${CSOLUTION_FILENAME} ${CSOLUTION_CONTENT})
 
-  set(CPROJECT_CONTENT "{\"project\": { \"device\": \"${device}\", \"compiler\": \"${compiler}\", \"components\": []}}")
+  set(CPROJECT_CONTENT "{\"project\": { \"compiler\": \"${compiler}\", \"rte\": {\"base-dir\": \"${RTE_DIR}\"}, \"components\": []}}")
   list(LENGTH ${components} COMPONENT_LENGTH)
   if(COMPONENT_LENGTH GREATER 0)
     math(EXPR COMPONENT_LENGTH "${COMPONENT_LENGTH}-1")
@@ -109,7 +109,7 @@ function(add_cmsis_library target device compiler packs components)
   endif()
 
   # read cbuild.yml in json format for easier cmake parsing
-  set(CBUILD_YML_FILENAME ${CSOLUTION_DIR}/${target}.cbuild.yml)
+  set(CBUILD_YML_FILENAME ${CSOLUTION_DIR}/${target}+${device}.cbuild.yml)
   execute_process(
     COMMAND ${YAML_JSON_CONVERTER} ${CBUILD_YML_FILENAME} -o=json
     OUTPUT_VARIABLE CBUILD_CONTENT

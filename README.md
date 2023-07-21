@@ -6,7 +6,7 @@ The CMake module [`CMSIS-Pack-Utils.cmake`](./modules/CMSIS-Pack-Utils.cmake) is
 
 The following applications are required to be installed before calling functions from `CMSIS-Pack-Utils`. Make sure they are in the system `PATH`.
 
-- [CMSIS Toolbox](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/installation.md): for using `cpackget` and `csolution`
+- [CMSIS Toolbox 2.0.0](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/tag/2.0.0): for using `cpackget` and `csolution`
 
 - [yq](https://github.com/mikefarah/yq#install): for converting YAML into JSON for using CMake parser
 
